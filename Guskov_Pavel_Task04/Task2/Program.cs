@@ -8,8 +8,8 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            string FirstString = new string("");
-            string SecondString = new string("");
+            string FirstString = null;
+            string SecondString = null;
 
             FirstString = GetString(FirstString, "First");
             SecondString = GetString(SecondString, "Second");
@@ -24,8 +24,7 @@ namespace Task2
 
         private static string GetString(string str, string i)
         {
-            Console.WriteLine($"Enter {i} String:");
-            str.Remove(0,str.Length);
+            Console.WriteLine($"Enter {i} string:");
             str = Console.ReadLine();
 
             return str.ToLower();
@@ -37,13 +36,17 @@ namespace Task2
             string resultString = new string("");
 
             foreach (char ch in firstString)
+            {
                 if (!secondString.Contains(ch))
-                    resultString  += ch;
+                    resultString += ch;
                 else
                 {
                     resultString += ch;
                     resultString += ch;
                 }
+            }
+            // удалить все повторяющиеся в second
+            // в цикле по second делать first = first.Replace(c, c + c);
 
             return resultString;
         }

@@ -34,7 +34,7 @@ namespace Task5
         private static string GetText(string Text)
         {
             Console.WriteLine("Select file location:\n");
-            Text = File.ReadAllText("C:/.NET_2018-2_GuskovPA/Guskov_Pavel_Task04/Task5/example.html");
+            Text = File.ReadAllText("C:/Projects/.NET_2018-2_GuskovPA/Guskov_Pavel_Task04/Task5/example.html");
             //Text = File.ReadAllText(Console.ReadLine());
 
             return Text;

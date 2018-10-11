@@ -10,7 +10,7 @@ namespace Task4
 
         static void Main(string[] args)
         {
-            string str = "";
+            string str = null;
             StringBuilder sb = new StringBuilder();
             Stopwatch stopwatch = new Stopwatch();
 

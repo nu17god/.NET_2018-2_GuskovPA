@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Task1
 {
@@ -30,6 +31,7 @@ namespace Task1
 
         private static string DeleteSpaces(string str)
         {
+            var stringWithoutSpaces = Regex.Replace(str, "\\s*", " ");
             do
             {
                 str = str.Replace("  ", " ");

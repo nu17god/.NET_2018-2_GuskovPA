@@ -43,11 +43,11 @@ namespace Task6
         {
             if (result)
             {
-                Console.WriteLine("This number is in scientific form");
+                Console.WriteLine("There is number in scientific form");
             }
             else
             {
-                Console.WriteLine("This is NOT number in scientific form");
+                Console.WriteLine("There is NOT number in scientific form");
             }
         }
 
