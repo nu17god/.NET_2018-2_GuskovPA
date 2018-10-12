@@ -270,15 +270,22 @@ namespace Task1
 
 
             age = DateTime.Now.Year - birthDay.Year;
+
             if (DateTime.Now.Month < birthDay.Month)
             {
                 age--;
-            } else if (DateTime.Now.Day < birthDay.Day)
+
+            }
+            else if (DateTime.Now.Month == birthDay.Month)
             {
-                age--;
-            } else if ((DateTime.Now.Day < birthDay.Day))
-            {
-                Console.WriteLine("Happy Birthday");
+                if (DateTime.Now.Day < birthDay.Day)
+                {
+                    age--;
+                }
+                else if ((DateTime.Now.Day == birthDay.Day))
+                {
+                    Console.WriteLine("Happy Birthday");
+                }
             }
 
             this.age = age;
@@ -287,7 +294,7 @@ namespace Task1
         public void GetHuman()
         {
             Console.WriteLine($"Person {this.name} {this.secondName} {this.surName}");
-            Console.WriteLine($"Born {this.birthDay.month},{ this.birthDay.day },{this.birthDay.year} (age {this.age })");
+            Console.WriteLine($"Born {this.birthDay.month},{ this.birthDay.day },{this.birthDay.year} (age {this.age })\n");
         }
     }
 
@@ -296,8 +303,14 @@ namespace Task1
         static void Main(string[] args)
         {
             Human Jordan = new Human("Michael", "Jordan", "Jeffrey", "17", "2", "1963");
-
             Jordan.GetHuman();
+
+            Human Guskov = new Human("Pavel", "Guskov", "Andreevich", "22", "12", "1998");
+            Guskov.GetHuman();
+
+            Human Alesha = new Human("Alexey", "Ivanov", "", "12", "10", "1900");
+            Alesha.GetHuman();
+
             Console.ReadKey();
         }
     }
