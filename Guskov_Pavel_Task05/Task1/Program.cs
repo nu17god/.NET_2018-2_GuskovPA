@@ -308,8 +308,20 @@ namespace Task1
             Human Guskov = new Human("Pavel", "Guskov", "Andreevich", "22", "12", "1998");
             Guskov.GetHuman();
 
-            Human Alesha = new Human("Alexey", "Ivanov", "", "12", "10", "1900");
-            Alesha.GetHuman();
+            //Human Alesha = new Human("Alexey", "Ivanov", "", "12", "10", "1900");
+            //Alesha.GetHuman();
+
+            //string name = Console.ReadLine();
+            //string surname = Console.ReadLine();
+            //string secondname = Console.ReadLine();
+            //string day = Console.ReadLine();
+            //string month = Console.ReadLine();
+            //string year = Console.ReadLine();
+
+            //Human human = new Human(name, surname, secondname, day, month, year);
+
+            //human.GetHuman();
+
 
             Console.ReadKey();
         }
