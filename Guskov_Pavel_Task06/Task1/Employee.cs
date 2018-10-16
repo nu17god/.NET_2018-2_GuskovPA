@@ -15,15 +15,22 @@ namespace Task1
 
             set
             {
-                position = value;
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Incorrect position");
+                }
+                else
+                {
+                    position = value;
+                }
             }
         }
 
-        public override void GetInfo()
+        public override string ToString()
         {
-            Console.WriteLine($"Person {this.name} {this.secondName} {this.surName}");
-            Console.WriteLine($"Born {this.birthDay.month}.{ this.birthDay.day }.{this.birthDay.year} (age {this.age })");
-            Console.WriteLine($"His position is {this.position}({this.experience} years)\n");
+            return $"Person {this.name} {this.secondName} {this.surName}\n"
+                + $"Born: {birthDay.ToShortDateString()}" + $" (age {this.Age })\n" 
+                + $"His position is {this.position}({this.experience} years)\n";
         }
 
         public int Experience
@@ -32,9 +39,9 @@ namespace Task1
 
             set
             {
-                if (value > this.age)
+                if (value > this.Age)
                 {
-                    Console.WriteLine("Incorrect experience");
+                    throw new ArgumentException("Incorrect name experience");
                 }
                 else
                 {
@@ -44,20 +51,10 @@ namespace Task1
         }
 
 
-        public Employee(string name, string surName, string secondName, string day, string month, string year, string position, string experience) : base(name, surName, secondName, day, month, year)
+        public Employee(string name, string surName, string secondName, DateTime birthday, string position, int experience) : base(name, surName, secondName, birthday)
         {
-            int intTemp;
-
             this.Position = position;
-
-            if (int.TryParse(experience, out intTemp))
-            {
-                this.Experience = intTemp;
-            }
-            else
-            {
-                Console.WriteLine("Incorrect experience");
-            }
+            this.Experience = experience;
         }
     }
 }

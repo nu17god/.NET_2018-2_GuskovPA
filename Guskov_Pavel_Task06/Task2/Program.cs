@@ -6,36 +6,41 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            string tempX = null;
-            string tempY = null;
-            string tempRadius = null;
-            string tempSmallRadius = null;
 
-            Ring ring = new Ring(0, 0, 2, 1);
+            Ring ring = new Ring(5, 5, 10, 5);
 
-            do
-            {
-                Console.WriteLine("Enter x coordinate");
-                tempX = Console.ReadLine();
-
-                Console.WriteLine("Enter y coordinate");
-                tempY = Console.ReadLine();
-
-                Console.WriteLine("Enter external radius");
-                tempRadius = Console.ReadLine();
-
-                Console.WriteLine("Enter internal radius");
-                tempSmallRadius = Console.ReadLine();
-
-                ring.SetRing(tempX, tempY, tempRadius, tempSmallRadius);
-
-            } while (!ring.correct);
-
-            ring.PrintCoords();
-            ring.PrintLength();
-            ring.PrintSquare();
+            PrintCoords(ring);
+            PrintLength(ring);
+            PrintSquare(ring);
 
             Console.ReadKey();
+        }
+
+
+
+        public static void PrintLength(Round round)
+        {
+            Console.WriteLine($"Circle lenght is {round.Length}");
+        }
+
+        public static void PrintSquare(Round round)
+        {
+            Console.WriteLine($"Circle square is {round.Square}");
+        }
+
+        public static void PrintCoords(Round round)
+        {
+            Console.WriteLine($"Coordinate is ({round.X},{round.Y})");
+        }
+
+        public static void PrintLength(Ring ring)
+        {
+            Console.WriteLine($"Ring lenght is {ring.Length}");
+        }
+
+        public static void PrintSquare(Ring ring)
+        {
+            Console.WriteLine($"Ring square is {ring.Square}");
         }
     }
 }

@@ -9,9 +9,7 @@ namespace Task1
         protected string name;
         protected string surName;
         protected string secondName;
-        protected Date birthDay;
-
-        public int age;
+        protected DateTime birthDay;
 
         public string Name
         {
@@ -21,7 +19,14 @@ namespace Task1
             }
             set
             {
-                name = value;
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Incorrect name");
+                }
+                else
+                {
+                    name = value;
+                }
             }
 
         }
@@ -34,7 +39,14 @@ namespace Task1
             }
             set
             {
-                surName = value;
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Incorrect surname");
+                }
+                else
+                {
+                    surName = value;
+                }
             }
 
         }
@@ -47,13 +59,42 @@ namespace Task1
             }
             set
             {
-                secondName = value;
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException("Incorrect secondname");
+                }
+                else
+                {
+                    secondName = value;
+                }
             }
 
         }
 
+        public int Age
+        {
+            get
+            {
+                var age = DateTime.Now.Year - birthDay.Year;
 
-        public Date BirthDay
+                if (DateTime.Now.Month < birthDay.Month)
+                {
+                    age--;
+
+                }
+                else if (DateTime.Now.Month == birthDay.Month)
+                {
+                    if (DateTime.Now.Day < birthDay.Day)
+                    {
+                        age--;
+                    }
+                }
+
+                return age;
+            }
+        }
+
+        public DateTime BirthDay
         {
             get
             {
@@ -61,77 +102,27 @@ namespace Task1
             }
             set
             {
-                if (value.Year > DateTime.Now.Year)
+                if (value > DateTime.Now)
                 {
-                    Console.WriteLine("Incorrect Birth Day");
-
-
+                    throw new ArgumentException("Incorrect Birth Day");
                 }
-                else if (value.Year == DateTime.Now.Year)
-                {
-                    if (value.Month > DateTime.Now.Month)
-                    {
-                        Console.WriteLine("Incorrect Birth Day");
-                    }
-                    else if (value.Month == DateTime.Now.Month)
-                    {
-                        if (value.Day > DateTime.Now.Day)
-                        {
-                            Console.WriteLine("Incorrect Birth Day");
-                        }
-                        else
-                        {
-                            birthDay = value;
-
-
-                        }
-                    }
-                }
-                else if (value.Year < DateTime.Now.Year)
-                {
-                    birthDay = value;
-                }
-
+                birthDay = value;
             }
         }
 
-        public Human(string name, string surName, string secondName, string day, string month, string year)
+        public Human(string name, string surName, string secondName, DateTime birthDay)
         {
-            int age;
-            Date birthDay = new Date(day, month, year);
-
-            this.Name = name;
-            this.SurName = surName;
-            this.SecondName = secondName;
-            this.BirthDay = birthDay;
-
-
-            age = DateTime.Now.Year - birthDay.Year;
-
-            if (DateTime.Now.Month < birthDay.Month)
-            {
-                age--;
-
-            }
-            else if (DateTime.Now.Month == birthDay.Month)
-            {
-                if (DateTime.Now.Day < birthDay.Day)
-                {
-                    age--;
-                }
-                else if ((DateTime.Now.Day == birthDay.Day))
-                {
-                    Console.WriteLine("Happy Birthday");
-                }
-            }
-
-            this.age = age;
+            Name = name;
+            SurName = surName;
+            SecondName = secondName;
+            BirthDay = birthDay;
         }
 
-        public virtual void GetInfo()
+        public override string ToString()
         {
-            Console.WriteLine($"Person {this.name} {this.secondName} {this.surName}");
-            Console.WriteLine($"Born {this.birthDay.month}.{ this.birthDay.day }.{this.birthDay.year} (age {this.age })\n");
+            return $"Person {name} {secondName} {surName}\n" +
+                $"Born: {birthDay.ToShortDateString()}" +
+                $" (age {Age})\n";
         }
     }
 }

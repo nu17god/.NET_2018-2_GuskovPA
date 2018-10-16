@@ -8,7 +8,6 @@ namespace Task2
     {
         private int smallRadius;
 
-
         protected int SmallRadius
         {
             get => smallRadius;
@@ -23,91 +22,40 @@ namespace Task2
                     }
                     else
                     {
-                        this.correct = false;
-                        Console.WriteLine("Incorrect internal radius");
+                        throw new ArgumentException("Incorrect internal radius");
                     }
                 }
                 else 
                 {
-                    this.correct = false;
-                    Console.WriteLine("Incorrect internal radius");
+                    throw new ArgumentException("Incorrect internal radius");
                 }
             }
         }
 
-        public void SetRing(string x, string y, string radius, string smallRadius)
+        public new double Length
         {
-            int intTemp;
+            get => Length; 
 
-            this.correct = true;
+            set
+            {
+                Length = (2 * Math.PI * radius) + (2 * Math.PI * smallRadius);
+            }
+        }
 
-            if (int.TryParse(x, out intTemp))
-            {
-                this.X = intTemp;
-            }
-            else
-            {
-                this.correct = false;
-                Console.WriteLine("Incorrect x coordinate");
-            }
+        public new double Square
+        {
+            get => Square;
 
-            if (int.TryParse(y, out intTemp))
+            set
             {
-                this.Y = intTemp;
+                Square = (Math.PI * Math.Pow(radius, 2)) - (Math.PI * Math.Pow(smallRadius, 2));
             }
-            else
-            {
-                this.correct = false;
-                Console.WriteLine("Incorrect y coordinate");
-            }
-
-            if (int.TryParse(radius, out intTemp))
-            {
-                this.Radius = intTemp;
-            }
-            else
-            {
-                this.correct = false;
-                Console.WriteLine("Incorrect external radius");
-            }
-
-            if (int.TryParse(smallRadius, out intTemp))
-            {
-                this.SmallRadius = intTemp;
-            }
-            else
-            {
-                this.correct = false;
-                Console.WriteLine("Incorrect internal radius");
-            }
-
         }
 
         public Ring(int x, int y, int Radius, int smallRadius) : base(x, y, Radius)
         {
-            this.SmallRadius = smallRadius;
+            SmallRadius = smallRadius;
 
         }
-
-        protected override double GetLength()
-        {
-            return ((2 * Math.PI * radius) + (2 * Math.PI * smallRadius));
-        }
-
-        protected override double GetSquare()
-        {
-            return ((Math.PI * Math.Pow(radius, 2)) - (Math.PI * Math.Pow(smallRadius, 2)));
-        }
-
-        public override void PrintLength()
-        {
-            Console.WriteLine($"Ring lenght is {GetLength()}");
-        }
-
-        public override void PrintSquare()
-        {
-            Console.WriteLine($"Ring square is {GetSquare()}");
-        }
-
     }
 }
