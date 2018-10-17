@@ -7,6 +7,14 @@ namespace Task2
         static void Main(string[] args)
         {
 
+            Round round = new Round(5, 5, 10);
+
+            PrintCoords(round);
+            PrintLength(round);
+            PrintSquare(round);
+
+            Console.WriteLine();
+
             Ring ring = new Ring(5, 5, 10, 5);
 
             PrintCoords(ring);

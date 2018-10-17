@@ -14,10 +14,8 @@ namespace Task2
 
         public int Radius
         {
-            get
-            {
-                return radius;
-            }
+            get => radius;
+
             set
             {
                 if (value > 0)
@@ -34,22 +32,14 @@ namespace Task2
 
         public double Length
         {
-            get => Length;
+            get => 2 * Math.PI * radius;
 
-            set
-            {
-                Length = 2 * Math.PI * radius;
-            }
         }
 
         public double Square
         {
-            get => Square;
+            get => Math.PI * Math.Pow(radius, 2);
 
-            set
-            {
-                Square = Math.PI * Math.Pow(radius, 2);
-            }
         }
 
         public Round(int x, int y, int r)

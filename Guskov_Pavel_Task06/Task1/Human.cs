@@ -13,60 +13,48 @@ namespace Task1
 
         public string Name
         {
-            get
-            {
-                return name;
-            }
+            get => name;
+
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("Incorrect name");
                 }
-                else
-                {
-                    name = value;
-                }
+
+                name = value;
             }
 
         }
 
         public string SurName
         {
-            get
-            {
-                return surName;
-            }
+            get => surName;
+
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("Incorrect surname");
                 }
-                else
-                {
-                    surName = value;
-                }
+
+                surName = value;
             }
 
         }
 
         public string SecondName
         {
-            get
-            {
-                return secondName;
-            }
+            get => secondName;
+
             set
             {
                 if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("Incorrect secondname");
                 }
-                else
-                {
-                    secondName = value;
-                }
+
+                secondName = value;
             }
 
         }
@@ -96,16 +84,15 @@ namespace Task1
 
         public DateTime BirthDay
         {
-            get
-            {
-                return birthDay;
-            }
+            get => birthDay;
+
             set
             {
                 if (value > DateTime.Now)
                 {
                     throw new ArgumentException("Incorrect Birth Day");
                 }
+
                 birthDay = value;
             }
         }

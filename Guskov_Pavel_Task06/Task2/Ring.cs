@@ -34,22 +34,12 @@ namespace Task2
 
         public new double Length
         {
-            get => Length; 
-
-            set
-            {
-                Length = (2 * Math.PI * radius) + (2 * Math.PI * smallRadius);
-            }
+            get => (2 * Math.PI * radius) + (2 * Math.PI * smallRadius);
         }
 
         public new double Square
         {
-            get => Square;
-
-            set
-            {
-                Square = (Math.PI * Math.Pow(radius, 2)) - (Math.PI * Math.Pow(smallRadius, 2));
-            }
+            get => (Math.PI * Math.Pow(radius, 2)) - (Math.PI * Math.Pow(smallRadius, 2));
         }
 
         public Ring(int x, int y, int Radius, int smallRadius) : base(x, y, Radius)

@@ -19,18 +19,17 @@ namespace Task1
                 {
                     throw new ArgumentException("Incorrect position");
                 }
-                else
-                {
-                    position = value;
-                }
+
+                position = value;
+
             }
         }
 
         public override string ToString()
         {
             return $"Person {this.name} {this.secondName} {this.surName}\n"
-                + $"Born: {birthDay.ToShortDateString()}" + $" (age {this.Age })\n" 
-                + $"His position is {this.position}({this.experience} years)\n";
+                + $"Born: {birthDay.ToShortDateString()}" + $" (age {this.Age })\n"
+                + $"His position is {this.position} ({this.experience} years)\n";
         }
 
         public int Experience
@@ -41,12 +40,11 @@ namespace Task1
             {
                 if (value > this.Age)
                 {
-                    throw new ArgumentException("Incorrect name experience");
+                    throw new ArgumentException("Incorrect experience");
                 }
-                else
-                {
-                    experience = value;
-                }
+
+                experience = value;
+
             }
         }
 

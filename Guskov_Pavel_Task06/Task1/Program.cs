@@ -6,12 +6,12 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-            var birthday = new DateTime(1963, 2, 17);
-            Human Jordan = new Human("Michael", "Jordan", "Jeffrey", birthday);
+            Human Jordan = new Human("Michael", "Jordan", "Jeffrey", new DateTime(1963, 2, 17));
             Console.WriteLine(Jordan);
 
-            Employee Bryant = new Employee("Kobe", "Bryant", "Bean", new DateTime(1963, 2, 17), "Pro basketball player", 20);
+            Employee Bryant = new Employee("Kobe", "Bryant", "Bean", new DateTime(1978, 8, 23), "Pro basketball player", 20);
             Console.WriteLine(Bryant);
+
             Console.ReadKey();
         }
     }
