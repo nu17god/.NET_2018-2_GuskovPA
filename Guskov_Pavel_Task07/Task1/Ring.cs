@@ -32,11 +32,12 @@ namespace Task1
         public Ring(int x, int y, int radius, int smallRadius) : base(x, y, radius)
         {
             SmallRadius = smallRadius;
+            Type = "Ring";
         }
 
-        public override void Draw()
+        public override void Draw(IDrawer drawer)
         {
-            Console.WriteLine($"Ring ({X},{Y}) External radius is {Radius}, Internal radius is {SmallRadius}");
+            drawer.DrawRing(X, Y, Radius, SmallRadius, Type);
         }
     }
 }

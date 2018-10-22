@@ -8,7 +8,7 @@ namespace Task2
         {
             GeometricProgression geometricProgression = new GeometricProgression(2, 2);
 
-            PrintSeries(geometricProgression, 30);
+            PrintSeries(geometricProgression, 10);
 
             Console.ReadKey();
         }

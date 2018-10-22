@@ -9,6 +9,7 @@ namespace Task1
         private int x;
         private int y;
         private int radius;
+        public string Type;
 
         public int X
         {
@@ -50,11 +51,12 @@ namespace Task1
             Radius = radius;
             X = x;
             Y = y;
+            Type = "Circle";
         }
 
-        public override void Draw()
+        public override void Draw(IDrawer drawer)
         {
-            Console.WriteLine($"Circle ({X},{Y}) radius is {Radius}");
+            drawer.DrawCircle(X, Y,Radius, Type);
         }
     }
 }

@@ -6,6 +6,6 @@ namespace Task1
 {
     abstract class Figure
     {
-        abstract public void Draw();
+        abstract public void Draw(IDrawer drawer);
     }
 }

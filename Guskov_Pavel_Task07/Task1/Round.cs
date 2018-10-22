@@ -6,14 +6,16 @@ namespace Task1
 {
     class Round : Circle
     {
+        public string Type;
+
         public Round(int x, int y, int radius) : base (x, y, radius)
         {
-
+            Type = "Round";
         }
 
-        public override void Draw()
+        public override void Draw(IDrawer drawer)
         {
-            Console.WriteLine($"Round ({X},{Y}) radius is {Radius}");
+            drawer.DrawCircle(X, Y, Radius, Type);
         }
     }
 }

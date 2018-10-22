@@ -8,12 +8,12 @@ namespace Task1
     {
         public Rectangle(int x1, int y1, int x2, int y2) : base (x1, y1, x2, y2)
         {
-
+            Type = "Rectangle";
         }
 
-        public override void Draw()
+        public override void Draw(IDrawer drawer)
         {
-            Console.WriteLine($"Rectangle ({X1},{Y1})({X2},{Y2})");
+            drawer.DrawLine(X1, Y1, X2, Y2, Type);
         }
     }
 }

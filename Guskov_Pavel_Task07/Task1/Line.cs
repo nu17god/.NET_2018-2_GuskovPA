@@ -10,6 +10,7 @@ namespace Task1
         private int y1;
         private int x2;
         private int y2;
+        public string Type;
 
         public int X1
         {
@@ -57,11 +58,15 @@ namespace Task1
             Y1 = y1;
             X2 = x2;
             Y2 = y2;
+            Type = "Line";
         }
 
-        public override void Draw()
+        public override void Draw(IDrawer drawer)
         {
-            Console.WriteLine($"Line ({X1},{Y1})({X2},{Y2})");
+            drawer.DrawLine(X1,Y1,X1,Y2, Type);
         }
     }
+
+
+
 }
