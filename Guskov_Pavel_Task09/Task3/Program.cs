@@ -7,14 +7,13 @@ namespace Task3
     {
         static void Main(string[] args)
         {
-            Console.Clear();
             Console.WriteLine("Enter location of file:");
 
             string text = File.ReadAllText(Console.ReadLine());
 
             KeyWordsSearcher ks = new KeyWordsSearcher(text);
 
-            ks.setKeyWords();
+            ks.SetKeyWords();
             ks.CountKeyWords();
 
             Console.WriteLine(ks);

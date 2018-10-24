@@ -18,9 +18,10 @@ namespace Task1
             list = RemoveEachSecondItem(list) as List<int>;
             linkedList = RemoveEachSecondItem(linkedList) as LinkedList<int>;
 
-            
-
+            Console.WriteLine("List:");
             GetList(list);
+
+            Console.WriteLine("LinkedList:");
             GetList(linkedList);
 
             Console.ReadKey();
@@ -30,7 +31,7 @@ namespace Task1
         {
             foreach (int item in list)
             {
-                Console.Write(item);
+                Console.Write(item + 1);
             }
             Console.WriteLine();
         }
@@ -42,6 +43,11 @@ namespace Task1
             Console.WriteLine("Input count");
 
             if (!Int32.TryParse(Console.ReadLine(), out temp))
+            {
+                throw new ArgumentException();
+            }
+
+            if (temp == 0)
             {
                 throw new ArgumentException();
             }
@@ -61,6 +67,7 @@ namespace Task1
 
         public static ICollection<int> RemoveEachSecondItem(ICollection<int> list)
         {
+
             var first = 0;
             var last = list.Count - 1;
             var second = 2;

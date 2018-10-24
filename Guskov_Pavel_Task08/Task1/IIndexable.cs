@@ -6,6 +6,10 @@ namespace Task1
 {
     interface IIndexable<T>
     {
-        T this[int index] { get; }
+        T this[int index]
+        {
+            get;
+            set;
+        }
     }
 }

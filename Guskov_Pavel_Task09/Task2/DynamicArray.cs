@@ -45,9 +45,9 @@ namespace Task2
             count = array.Length;
         }
 
-        public DynamicArray(IEnumerable<T> iEnumerable)
+        public DynamicArray(IEnumerable<T> collection)
         {
-            ICollection<T> collection = iEnumerable as ICollection<T>;
+            //ICollection<T> collection = iEnumerable as ICollection<T>;
 
             if (collection == null)
             {
@@ -55,19 +55,17 @@ namespace Task2
             }
 
             int i = 0;
-            capacity = collection.Count;
-            count = collection.Count;
 
             MyDynamicArray = new T[capacity];
 
-            if (count != 0)
+
+            foreach (var a in collection)
             {
-                foreach (var a in collection)
-                {
-                    MyDynamicArray[i] = a;
-                    i++;
-                }
+                MyDynamicArray[i] = a;
+                i++;
             }
+
+            count = MyDynamicArray.Length;
         }
 
         public void Add(T add)
@@ -120,6 +118,8 @@ namespace Task2
 
         public bool Remove(T remove)
         {
+            bool result = false;
+
             for (int i = 0; i < count; i++)
             {
                 if (MyDynamicArray[i].Equals(remove))
@@ -133,11 +133,11 @@ namespace Task2
 
                     MyDynamicArray[count] = default(T);
 
-                    return true;
+                    result = true;
                 }
             }
 
-            return false;
+            return result;
         }
 
         public void Insert(int index, T insert)

@@ -18,7 +18,7 @@ namespace Task3
 
         }
 
-        public void setKeyWords()
+        public void SetKeyWords()
         {
             string[] strArr = Regex.Split(text, @"\b\W+\b", RegexOptions.IgnoreCase);
 
@@ -46,8 +46,7 @@ namespace Task3
         {
             for (int i = 0; i < KeyWords.Count; i++)
             {
-                if (!string.IsNullOrWhiteSpace(KeyWords[i].Word))
-                {
+
                     string pattern = @"\b" + KeyWords[i].Word + @"\b";
 
                     Regex wordsCounterRegex = new Regex(pattern);
@@ -58,7 +57,6 @@ namespace Task3
                         foreach (Match match in matches)
                             KeyWords[i].Count++;
                     }
-                }
             }
         }
 
