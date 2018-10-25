@@ -7,10 +7,9 @@ namespace Task2
 {
     class DynamicArray<T> : IIndexable<T>, IEnumerable<T>, IEnumerable
     {
-        public T[] MyDynamicArray = new T[8];
+        private T[] myDynamicArray = new T[8];
 
         public int count;
-        public int capacity;
 
         public int Lenght
         {
@@ -19,29 +18,51 @@ namespace Task2
 
         public int Capacity
         {
-            get => capacity;
+            get => myDynamicArray.Length;
         }
 
-        public T this[int index] => MyDynamicArray[index];
+        public T this[int index]
+        {
+            get
+            {
+                return myDynamicArray[index];
+            }
+            set
+            {
+                if (index < 0)
+                {
+                    throw new ArgumentException("ArgumentException");
+                }
+
+                if (index > count)
+                {
+                    throw new IndexOutOfRangeException("IndexOutOfRangeException");
+                }
+
+                myDynamicArray[index] = value;
+            }
+        }
 
         public DynamicArray()
         {
-            MyDynamicArray = new T[8];
+            myDynamicArray = new T[8];
             count = 0;
-            capacity = 8;
         }
 
         public DynamicArray(int Capacity)
         {
-            MyDynamicArray = new T[Capacity];
+            if (Capacity <= 0)
+            {
+                throw new ArgumentException();
+            }
+
+            myDynamicArray = new T[Capacity];
             this.count = 0;
-            this.capacity = Capacity;
         }
 
         public DynamicArray(T[] array)
         {
-            MyDynamicArray = array;
-            capacity = array.Length;
+            myDynamicArray = array;
             count = array.Length;
         }
 
@@ -56,41 +77,40 @@ namespace Task2
 
             int i = 0;
 
-            MyDynamicArray = new T[capacity];
+            myDynamicArray = new T[Capacity];
 
 
             foreach (var a in collection)
             {
-                MyDynamicArray[i] = a;
+                myDynamicArray[i] = a;
                 i++;
             }
 
-            count = MyDynamicArray.Length;
+            count = myDynamicArray.Length;
         }
 
         public void Add(T add)
         {
-            if (count == capacity)
+            if (CheckCount())
             {
-                capacity *= 2;
-                T[] tempArray = new T[capacity];
+                T[] tempArray = new T[Capacity * 2];
 
-                for (int i = 0; i < MyDynamicArray.Length; i++)
+                for (int i = 0; i < myDynamicArray.Length; i++)
                 {
-                    tempArray[i] = MyDynamicArray[i];
+                    tempArray[i] = myDynamicArray[i];
                 }
 
                 tempArray[count] = add;
                 count++;
 
-                MyDynamicArray = tempArray;
+                myDynamicArray = tempArray;
             }
-            else if (count < capacity)
+            else if (count < Capacity)
             {
-                MyDynamicArray[count] = add;
+                myDynamicArray[count] = add;
                 count++;
             }
-            else if (count > capacity)
+            else if (count > Capacity)
             {
                 throw new IndexOutOfRangeException("IndexOutOfRangeException");
             }
@@ -98,22 +118,20 @@ namespace Task2
 
         public void AddRange(T[] addRange)
         {
-
-            capacity = this.count + addRange.Length;
-            T[] tempArray = new T[capacity];
+            T[] tempArray = new T[this.count + addRange.Length];
 
             for (int i = 0; i < count; i++)
             {
-                tempArray[i] = MyDynamicArray[i];
+                tempArray[i] = myDynamicArray[i];
             }
 
-            for (int i = count; i < capacity; i++)
+            for (int i = count; i < Capacity; i++)
             {
                 tempArray[i] = addRange[i - count];
             }
 
             count += addRange.Length;
-            MyDynamicArray = tempArray;
+            myDynamicArray = tempArray;
         }
 
         public bool Remove(T remove)
@@ -122,18 +140,19 @@ namespace Task2
 
             for (int i = 0; i < count; i++)
             {
-                if (MyDynamicArray[i].Equals(remove))
+                if (myDynamicArray[i].Equals(remove))
                 {
                     count--;
 
                     for (int k = i; k < count; k++)
                     {
-                        MyDynamicArray[k] = MyDynamicArray[k + 1];
+                        myDynamicArray[k] = myDynamicArray[k + 1];
                     }
 
-                    MyDynamicArray[count] = default(T);
+                    myDynamicArray[count] = default(T);
 
                     result = true;
+
                 }
             }
 
@@ -144,49 +163,16 @@ namespace Task2
         {
             if (index <= count)
             {
-                if (count == capacity)
+                if (CheckCount())
                 {
-                    count++;
-                    capacity++;
-                    T[] tempArray = new T[capacity];
+                    T[] tempArray = new T[Capacity * 2];
 
-                    for (int i = 0; i < count; i++)
-                    {
-                        if (i == index)
-                        {
-                            tempArray[i] = insert;
-                        }
-                        else if (i < index)
-                        {
-                            tempArray[i] = MyDynamicArray[i];
-                        }
-                        else if (i > index)
-                        {
-                            tempArray[i] = MyDynamicArray[i - 1];
-                        }
-                    }
+                    myDynamicArray = InsertT(tempArray, insert, index);
 
-                    MyDynamicArray = tempArray;
                 }
                 else
                 {
-                    count++;
-
-                    for (int i = 0; i < count; i++)
-                    {
-                        if (i == index)
-                        {
-                            MyDynamicArray[i] = insert;
-                        }
-                        else if (i < index)
-                        {
-                            MyDynamicArray[i] = MyDynamicArray[i];
-                        }
-                        else if (i > index)
-                        {
-                            MyDynamicArray[i] = MyDynamicArray[i + 1];
-                        }
-                    }
+                    myDynamicArray = InsertT(myDynamicArray, insert, index);
                 }
             }
             else
@@ -203,7 +189,7 @@ namespace Task2
 
             for (int i = 0; i < count; i++)
             {
-                str = str + Convert.ToString(MyDynamicArray[i]);
+                str = str + Convert.ToString(myDynamicArray[i]);
             }
 
             return str;
@@ -213,13 +199,43 @@ namespace Task2
         {
             for (int i = 0; i < count; i++)
             {
-                yield return MyDynamicArray[i];
+                yield return myDynamicArray[i];
             }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return MyDynamicArray.GetEnumerator();
+            return myDynamicArray.GetEnumerator();
         }
+
+        public bool CheckCount()
+        {
+            return count == Capacity;
+        }
+
+        public T[] InsertT(T[] array, T insert, int index)
+        {
+            count++;
+
+            for (int i = 0; i < count; i++)
+            {
+                if (i == index)
+                {
+                    array[i] = insert;
+                }
+                else if (i < index)
+                {
+                    array[i] = myDynamicArray[i];
+                }
+                else if (i > index)
+                {
+                    array[i] = myDynamicArray[i - 1];
+                }
+            }
+
+            return array;
+        }
+
     }
+
 }
