@@ -57,17 +57,17 @@ namespace Task2
 
         public bool Equals(Employee employee)
         {
-            if (String.Compare(this.Name, employee.Name) != 0)
+            if (this.Name.Equals( employee.Name))
             {
                 return false;
             }
 
-            if (String.Compare(this.SecondName, employee.SecondName) != 0)
+            if (this.SecondName.Equals(employee.SecondName))
             {
                 return false;
             }
 
-            if (String.Compare(this.SurName, employee.SurName) != 0)
+            if (this.surName.Equals(employee.surName))
             {
                 return false;
             }
@@ -77,7 +77,7 @@ namespace Task2
                 return false;
             }
 
-            if (String.Compare(this.Position, employee.Position) != 0)
+            if (this.position.Equals(employee.position))
             {
                 return false;
             }

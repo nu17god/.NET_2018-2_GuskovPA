@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Task3
 {
@@ -6,17 +7,39 @@ namespace Task3
     {
         static void Main(string[] args)
         {
-            TwoDPointWithHash twoDPointWithHash1 = new TwoDPointWithHash(5, 5);
-            TwoDPointWithHash twoDPointWithHash2 = new TwoDPointWithHash(5, 5);
+            TwoDPointWithHash twoDPointWithHash = new TwoDPointWithHash(5, 5);
+            List<int> hashlist = new List<int>();
+            bool identity;
+            int hashcode;
+            int count = 0;
 
-            TwoDPointWithHash twoDPointWithHash3 = new TwoDPointWithHash(5, 10);
-            TwoDPointWithHash twoDPointWithHash4 = new TwoDPointWithHash(10, 5);
+            for (int i = -50; i < 50; i++)
+            {
+                for (int j = -50; j < 50; j++)
+                {
+                    count++;
+                    identity = true;
+                    twoDPointWithHash = new TwoDPointWithHash(i, j);
+                    hashcode = twoDPointWithHash.GetHashCode();
 
-            Console.WriteLine(twoDPointWithHash1.GetHashCode());
-            Console.WriteLine(twoDPointWithHash2.GetHashCode());
-            Console.WriteLine(twoDPointWithHash3.GetHashCode());
-            Console.WriteLine(twoDPointWithHash4.GetHashCode());
+                    foreach(int k in hashlist)
+                    {
+                        if (k == hashcode)
+                        {
+                            identity = false;
+                        }
+                    }
 
+                    if (identity)
+                    {
+                        hashlist.Add(hashcode);
+                    }
+
+                }
+            }
+            double uniqueness = hashlist.Count * 100 / count ;
+
+            Console.WriteLine($"Uniqueness is " + uniqueness+ "%");
             Console.ReadKey();
 
         }

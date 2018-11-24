@@ -13,11 +13,8 @@ namespace Task3
 
         public override int GetHashCode()
         {
-            int hashBase = 13;
-            hashBase = (hashBase * 7) + x;
-            hashBase = (hashBase * 7) + y;
-
-            return hashBase;
+            return Math.Abs(x) + Math.Abs(y) + ((y * x * x + 579) + (y * y * x + 975)) + (x * 753) + (y * 135);
         }
     }
 }
+
