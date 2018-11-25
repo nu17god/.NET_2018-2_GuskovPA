@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UsersAndAwards\UsersAndAwards.csproj" />
+    <ProjectReference Include="..\Entites\Entites.csproj" />
+    <ProjectReference Include="..\UsersAndAwardsDAL\UsersAndAwardsDAL.csproj" />
   </ItemGroup>
 
 </Project>

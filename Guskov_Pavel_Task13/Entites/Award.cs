@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace UsersAndAwards
+namespace Entites
 {
     public class Award
     {
-        private static int id;
+        private int id;
+        private string title;
+        private string description;
 
-        protected string title;
-        protected string description;
-
-        public static int ID
+        #region Prop
+        public int ID
         {
             get
             {
@@ -59,17 +59,26 @@ namespace UsersAndAwards
             }
 
         }
+        #endregion
 
-        public Award(string title, string description)
+        public Award(int id, string title, string description)
         {
-            ID = setID();
+            ID = id;
             Title = title;
             Description = description;
         }
 
-        private int setID()
+        public void UpdateAward(string title, string description)
         {
-            return ID++;
+            if (!string.IsNullOrEmpty(title))
+            {
+                Title = title;
+            }
+
+            if (!string.IsNullOrEmpty(description))
+            {
+                Description = description;
+            }
         }
     }
 }
